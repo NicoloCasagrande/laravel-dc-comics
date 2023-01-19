@@ -7,11 +7,11 @@
             @foreach ($comics as $comic)
                 <div class="col">
                     <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
+                        <img src="{{$comic->thumb}}" class="card-img-top" alt="...">
                         <div class="card-body">
                           <h5 class="card-title">{{$comic->title}}</h5>
                           <p class="card-text">Price: {{$comic->price}}</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <a href="#" class="btn btn-primary">Piu info</a>
                         </div>
                       </div>
                 </div>
