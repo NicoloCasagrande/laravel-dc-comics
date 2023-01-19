@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+    
     <main>
         @yield('page-content')
     </main>
