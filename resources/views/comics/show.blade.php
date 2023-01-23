@@ -7,4 +7,7 @@
     <span>{{$comic->sales_date}}</span>
     <span style="display:block">{{$comic->type}}</span>
     <a style="display:inline-block" href="{{route('comics.index')}}" class="btn btn-primary my-5">Torna alla Homepage</a>
+    @if (!$comic->sales_date)
+        
+    @endif
 @endsection
