@@ -12,6 +12,12 @@
                           <h5 class="card-title">{{$comic->title}}</h5>
                           <p class="card-text">Price: {{$comic->price}}</p>
                           <a href="{{route('comics.show', $comic->id)}}" class="btn btn-primary">Piu info</a>
+                          <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-primary">Modifica</a>
+                            <form action="" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-primary">Elimina</button>
+                            </form>
                         </div>
                       </div>
                 </div>
