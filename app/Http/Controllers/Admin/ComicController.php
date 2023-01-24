@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreComicRequest;
 
 class ComicController extends Controller
 {
@@ -36,10 +37,9 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $request->$this->validation($request);
-        $data = $request->all();
+        $data = $request->validated();
         $new_comic = new Comic();
         // $new_comic->title = $data['title'];
         // $new_comic->description = $data['description'];
@@ -71,9 +71,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -83,9 +83,12 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreComicRequest $request, Comic $comic)
     {
-        //
+       $data = $request->all();
+
+       $comic->update($data);
+       return redirect()->route('comics.show', $comic->id);
     }
 
     /**
@@ -100,14 +103,6 @@ class ComicController extends Controller
     }
 
     private function validation(Request $request){
-        $request->validate([
-            'title' => 'required|string|max:50', 
-            'text' => 'nullable|string',
-            'thumb' => 'required|url|', 
-            'price' => 'required|decimal:2|between:0.01,99.99',
-            'series' => 'required|string|max:50',
-            'sale_date' => 'required|date', 
-            'series' => 'required|string|max:50'
-        ]);
+        
     }
 }
